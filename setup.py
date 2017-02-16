@@ -4,18 +4,18 @@ import sys
 import io
 import os
 
-import pybier_test
+import pybier
 
 setup(
-    name='pybier_test',
-    version='0.2',
-    url='http://github.com/r-bierman/pybier_test/',
+    name='pybier',
+    version='0.1',
+    url='http://github.com/r-bierman/pybier/',
     license='Apache Software License',
     author='Rob Bierman',
     author_email='rbierman@stanford.edu',
-    description='Learning to build python package',
-    long_description='Not bothering with a long description',
-    packages=['pybier_test'],
+    description='Personal python package to cleanly store code I reuse',
+    long_description='Contains python research tools I build, such as queries to ucsc and plotting',
+    packages=['pybier'],
     include_package_data=True,
     platforms='any',
     classifiers = [
