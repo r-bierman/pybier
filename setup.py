@@ -8,13 +8,13 @@ import pybier_test
 
 setup(
     name='pybier_test',
-    version='0.1',
+    version='0.2',
     url='http://github.com/r-bierman/pybier_test/',
     license='Apache Software License',
     author='Rob Bierman',
     author_email='rbierman@stanford.edu',
     description='Learning to build python package',
-    long_description='long_description',
+    long_description='Not bothering with a long description',
     packages=['pybier_test'],
     include_package_data=True,
     platforms='any',
