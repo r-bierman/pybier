@@ -4,9 +4,7 @@ import sys
 import io
 import os
 
-import gdrive_utils
-import scheduler_utils
-import ucsc_utils
+import pybier
 
 setup(
     name='pybier',
