@@ -4,7 +4,7 @@ import subprocess
 import os
 import re
 
-def run_gdrive_upload(local_dir, gdrive_loc, script_path=None, dry=False, SLURM=True):
+def gdrive_upload(local_dir, gdrive_loc, script_path=None, dry=False, SLURM=True):
     """
     Goal: wrapper to run gdrive sync upload
     Arguments:
@@ -48,7 +48,7 @@ if __name__ == '__main__':
     #################
     #Testing dry run#
     #################
-    #p_dry = run_gdrive_upload(sherlock_dir, gdrive_dir, dry = True)
+    #p_dry = gdrive_upload(sherlock_dir, gdrive_dir, dry = True)
     #print p_dry
     #print 'It is done running: ',p_dry.finished()
     #dry_out,dry_err = p_dry.get_output()
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     ##################
     #Testing full run#
     ##################
-    #p = run_gdrive_upload(sherlock_dir, gdrive_dir, script_path)
+    #p = gdrive_upload(sherlock_dir, gdrive_dir, script_path)
     #print p
     #print 'It is done running: ',p.finished()
     #out,err = p.get_output()
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     #print 'It is done running: ',p.finished()
 
     #Do a dry run first
-    p_dry = run_gdrive_upload(sherlock_dir, gdrive_dir, dry=True)
+    p_dry = gdrive_upload(sherlock_dir, gdrive_dir, dry=True)
     dry_out,dry_err = p_dry.get_output()
     print dry_out
 

@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
-import codecs
-import sys
-import io
-import os
 
 import pybier
+
+def readme():
+    with open('README.rest') as f:
+        return f.read()
 
 setup(
     name='pybier',
@@ -14,9 +14,16 @@ setup(
     author='Rob Bierman',
     author_email='rbierman@stanford.edu',
     description='Personal python package to cleanly store code I reuse',
-    long_description='Contains python research tools I build, such as queries to ucsc and plotting',
+    long_description=readme(),
     packages=['pybier'],
+    install_requires=[
+        'xml.dom',
+        'urllib2',
+    ],
     include_package_data=True,
+    zip_safe=False,
+    test_suite='nose.collector',
+    tests_require=['nose'],
     platforms='any',
     classifiers = [
         'Programming Language :: Python',
