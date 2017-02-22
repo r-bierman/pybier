@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from pybier.gdrive_utils import gdrive_upload
-from argparse import import ArgumentParser
+from argparse import ArgumentParser
 import sys
 
 #######################
@@ -21,7 +21,6 @@ sys.stdout.write('gdrive_loc:',gdrive_loc,'\n')
 #######################
 #  Run gdrive upload  #
 #######################
-sys.exit(1)
 p_dry = gdrive_upload(local_dir, gdrive_loc, script_path=None, dry=False, SLURM=True)
 dry_out,dry_err = p_dry.get_output()
 
