@@ -1,3 +1,3 @@
-from pybier import gdrive_utils 
-from pybier import scheduler_utils
-from pybier import ucsc_utils
+import gdrive_utils 
+import scheduler_utils
+import ucsc_utils
