@@ -15,7 +15,7 @@ setup(
     author_email='rbierman@stanford.edu',
     description='Personal python package to cleanly store code I reuse',
     long_description='Contains python research tools I build, such as queries to ucsc and plotting',
-    packages=['gdrive_utils','scheduler_utils','ucsc_utils'],
+    packages=['pybier'],
     include_package_data=True,
     platforms='any',
     classifiers = [
