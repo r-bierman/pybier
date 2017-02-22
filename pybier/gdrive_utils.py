@@ -29,7 +29,7 @@ def gdrive_upload(local_dir, gdrive_loc, script_path=None, dry=False, SLURM=True
 
     else:
         if not script_path:
-            script_path = '/home/rbierman/'+datetime.now().strftime('%Y_%m_%d.%H_%M_%S')+'.sh'
+            script_path = os.path.join(os.getenv('HOME'),datetime.now().strftime('%Y_%m_%d.%H_%M_%S')+'.sh')
 
         commands = ['gdrive sync upload'+' '+local_dir+' '+gdrive_loc]
         script_path = build_shell_script(script_path, commands)
