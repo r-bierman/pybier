@@ -1,4 +1,10 @@
+#RB: 2/22/17
+
+#Package imports
 from PHandle import PopenHandle
+from scheduler_utils import build_shell_script, run_SLURM
+
+#General imports
 from datetime import datetime
 import subprocess
 import os
