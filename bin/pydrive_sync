@@ -15,7 +15,7 @@ parser.add_argument('--SLURM',required=False,dest='SLURM',help='Whether or not t
 args = parser.parse_args()
 local_dir = args.local_dir
 gdrive_loc = args.gdrive_loc
-SLURM = True if args.SLURM else False
+SLURM = True if args.SLURM != 'False' or args.SLUMR != 'F' else False
 print args.SLURM
 
 sys.stdout.write('local_dir: '+local_dir+'\n')
@@ -26,8 +26,9 @@ sys.stdout.write('use SLURM: '+str(SLURM)+'\n')
 #  Run gdrive upload  #
 #######################
 p_dry = gdrive_upload(local_dir, gdrive_loc, script_path=None, dry=False, SLURM=SLURM)
+sys.stdout.write('Dry run is done: '+str(p_dry.finished())+'\n')
 dry_out,dry_err = p_dry.get_output()
 
-sys.stdout.write(dry_out,'\n')
+sys.stdout.write(dry_out+'\n')
 
 
