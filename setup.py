@@ -16,6 +16,7 @@ setup(
     description='Personal python package to cleanly store code I reuse',
     long_description=readme(),
     packages=['pybier'],
+    scripts=['bin/pydrive_sync'],
     install_requires=[],
     include_package_data=True,
     zip_safe=False,
