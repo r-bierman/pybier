@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 import pybier
 
 def readme():
-    with open('README.rest') as f:
+    with open('README.rst') as f:
         return f.read()
 
 setup(
@@ -16,10 +16,7 @@ setup(
     description='Personal python package to cleanly store code I reuse',
     long_description=readme(),
     packages=['pybier'],
-    install_requires=[
-        'xml.dom',
-        'urllib2',
-    ],
+    install_requires=[],
     include_package_data=True,
     zip_safe=False,
     test_suite='nose.collector',
