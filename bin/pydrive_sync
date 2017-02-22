@@ -16,10 +16,11 @@ args = parser.parse_args()
 local_dir = args.local_dir
 gdrive_loc = args.gdrive_loc
 SLURM = True if args.SLURM else False
+print args.SLURM
 
 sys.stdout.write('local_dir: '+local_dir+'\n')
 sys.stdout.write('gdrive_loc: '+gdrive_loc+'\n')
-
+sys.stdout.write('use SLURM: '+SLURM+'\n')
 #######################
 #  Run gdrive upload  #
 #######################
