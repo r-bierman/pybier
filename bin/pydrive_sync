@@ -26,9 +26,10 @@ sys.stdout.write('use SLURM: '+str(SLURM)+'\n')
 #  Run gdrive upload  #
 #######################
 p_dry = gdrive_upload(local_dir, gdrive_loc, script_path=None, dry=False, SLURM=SLURM)
-sys.stdout.write(str(p_dry)+'\n')
+sys.stdout.write('PHandle '+str(p_dry)+'\n')
 dry_out,dry_err = p_dry.get_output()
 
-sys.stdout.write(dry_out+'\n')
-sys.stdout.write('Done\n'
+sys.stdout.write('Dry out: '+dry_out+'\n')
+sys.stdout.write('Dry err: '+dry_err+'\n')
+sys.stdout.write('Done\n')
 
