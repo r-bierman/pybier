@@ -21,12 +21,13 @@ def gdrive_upload(local_dir, gdrive_loc, script_path=None, dry=False, SLURM=True
         a process handle p that can be called upon to communicate output and error
         this allows multithreading
     """
-    if dry or SLURM == False:
-        cmd = ['gdrive','sync','upload']
-        if dry:
-            cmd.append('--dry-run')
-        cmd += [dry_flag,local_dir,gdrive_loc]
+    #Build up the command
+    cmd = ['gdrive','sync','upload']
+    if dry:
+        cmd.append('--dry-run')
+    cmd += [local_dir,gdrive_loc]
 
+    if not SLURM :
         proc = subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         return PopenHandle(proc)
 
@@ -34,8 +35,8 @@ def gdrive_upload(local_dir, gdrive_loc, script_path=None, dry=False, SLURM=True
         if not script_path:
             script_path = os.path.join(os.getenv('HOME'),datetime.now().strftime('%Y_%m_%d.%H_%M_%S')+'.sh')
 
-        commands = ['gdrive sync upload'+' '+local_dir+' '+gdrive_loc]
-        script_path = build_shell_script(script_path, commands)
+        cmd = ' '.join(cmd)
+        script_path = build_shell_script(script_path, cmd)
         handle = run_SLURM(script_path)
         return handle
 
