@@ -23,8 +23,8 @@ def gdrive_upload(local_dir, gdrive_loc, script_path=None, dry=False, SLURM=True
     """
     if dry or SLURM == False:
         cmd = ['gdrive','sync','upload']
-        if dry_flag:
-            cmd .append('--dry-run')
+        if dry:
+            cmd.append('--dry-run')
         cmd += [dry_flag,local_dir,gdrive_loc]
 
         proc = subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
