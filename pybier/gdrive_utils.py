@@ -22,9 +22,11 @@ def gdrive_upload(local_dir, gdrive_loc, script_path=None, dry=False, SLURM=True
         this allows multithreading
     """
     if dry or SLURM == False:
-        dry_flag = '--dry-run' if dry else ''
-        cmd = ['gdrive','sync','upload',dry_flag,local_dir,gdrive_loc]
-        print cmd
+        cmd = ['gdrive','sync','upload']
+        if dry_flag:
+            cmd .append('--dry-run')
+        cmd += [dry_flag,local_dir,gdrive_loc]
+
         proc = subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         return PopenHandle(proc)
 
