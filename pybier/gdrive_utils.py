@@ -44,7 +44,7 @@ def gdrive_upload(local_dir, gdrive_loc, script_path=None, dry=False, SLURM=True
 
 
 def get_parent_gdrive():
-    config_path = resource_filename('pybier',os.path.join('data','gdrive_config.json'))
+    config_path = resource_filename(__name__,os.path.join('data','gdrive_config.json'))
     gdrive_config = {}
     with open(config_path,'r') as config_f:
         gdrive_config = json.load(config_f)
