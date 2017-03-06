@@ -16,6 +16,7 @@ setup(
     description='Personal python package to cleanly store code I reuse',
     long_description=readme(),
     packages=['pybier'],
+    package_dir={'pybier': 'pybier'},
     package_data={'pybier': ['data/*']},
     scripts=['bin/pydrive_sync'],
     install_requires=[],
@@ -25,7 +26,7 @@ setup(
     tests_require=['nose'],
     platforms='any',
     classifiers = [
-        'Programming Language :: Python',
+        'Programming Language :: Python 2.7',
         'Development Status :: 4 - Beta',
         'Natural Language :: English',
         'Operating System :: OS Independent',
