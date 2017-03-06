@@ -15,7 +15,7 @@ parser.add_argument('--SLURM',required=False,dest='SLURM',help='Whether or not t
 args = parser.parse_args()
 local_dir = args.local_dir
 gdrive_loc = args.gdrive_loc
-SLURM = True if not(args.SLURM == 'False' or args.SLURM == 'F') else False
+SLURM = not(args.SLURM == 'False' or args.SLURM == 'F')
 
 #Print out out the params for now
 sys.stdout.write('local_dir: '+local_dir+'\n')
