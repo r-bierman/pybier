@@ -6,7 +6,9 @@ from scheduler_utils import build_shell_script, run_SLURM
 
 #General imports
 from datetime import datetime
+from pkg_resources import resource_filename
 import subprocess
+import json
 import os
 import re
 
@@ -41,18 +43,27 @@ def gdrive_upload(local_dir, gdrive_loc, script_path=None, dry=False, SLURM=True
         return handle
 
 
+def get_parent_gdrive():
+    config_path = resource_filename('pybier',os.path.join('data','gdrive_config.json'))
+    gdrive_config = {}
+    with open(config_path,'r') as config_f:
+        gdrive_config = json.load(config_f)
+
+    print gdrive_config
+
 ##########################
 #    Main For Testing    #
 ##########################
 if __name__ == '__main__':
-    sherlock_dir = '/home/rbierman'
-    gdrive_dir = '0B_PjHSg_YHHgSE5oeUtWblBaV1E'
+    get_parent_gdrive()
+    #sherlock_dir = '/home/rbierman'
+    #gdrive_dir = '0B_PjHSg_YHHgSE5oeUtWblBaV1E'
 
-    log_path = '/home/rbierman/gdrive_logs/'
-    time_str = datetime.now().strftime('%Y_%m_%d-%H_%M_%S')
-    log_dir = os.path.join(log_path,time_str)
-    os.mkdir(log_dir)
-    script_path = os.path.join(log_dir,'gdrive_sync.sh')
+    #log_path = '/home/rbierman/gdrive_logs/'
+    #time_str = datetime.now().strftime('%Y_%m_%d-%H_%M_%S')
+    #log_dir = os.path.join(log_path,time_str)
+    #os.mkdir(log_dir)
+    #script_path = os.path.join(log_dir,'gdrive_sync.sh')
     
 
     #################
@@ -77,9 +88,9 @@ if __name__ == '__main__':
     #print 'It is done running: ',p.finished()
 
     #Do a dry run first
-    p_dry = gdrive_upload(sherlock_dir, gdrive_dir, dry=True)
-    dry_out,dry_err = p_dry.get_output()
-    print dry_out
+    #p_dry = gdrive_upload(sherlock_dir, gdrive_dir, dry=True)
+    #dry_out,dry_err = p_dry.get_output()
+    #print dry_out
 
     #Do the full run
     
