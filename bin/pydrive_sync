@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from pybier.gdrive_utils import gdrive_upload
+from pybier.gdrive_utils import gdrive_upload,get_parent_gdrive
 from argparse import ArgumentParser
 import sys
 
@@ -9,13 +9,15 @@ import sys
 description = 'Required args: --local-dir, --gdrive-loc. Optional args: --SLURM, '
 parser = ArgumentParser(description=description)
 parser.add_argument('--local-dir',required=True,dest='local_dir',help='Local directory to save to gdrive')
-parser.add_argument('--gdrive-loc',required=True,dest='gdrive_loc',help='gdrive folder id (e.g. 0B_PjHSg_YHHgNHVmRFU1Wl9rdWs)')
+parser.add_argument('--gdrive-loc',required=False,dest='gdrive_loc',help='gdrive folder id (e.g. 0B_PjHSg_YHHgNHVmRFU1Wl9rdWs)')
 parser.add_argument('--SLURM',required=False,dest='SLURM',help='Whether or not to use SLURM [True/False] default [True]')
 
 args = parser.parse_args()
 local_dir = args.local_dir
 gdrive_loc = args.gdrive_loc
 SLURM = not(args.SLURM == 'False' or args.SLURM == 'F')
+
+get_parent_gdrive() #<-- really want this to work
 
 #Print out out the params for now
 sys.stdout.write('local_dir: '+local_dir+'\n')
