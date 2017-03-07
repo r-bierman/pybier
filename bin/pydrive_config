@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from pybier.gdrive_utils import gdrive_upload,get_parent_gdrive
 from pkg_resources import resource_filename
 from argparse import ArgumentParser
 import json
@@ -23,6 +22,8 @@ with open(config_path,'r') as config_f:
     gdrive_config = json.load(config_f)
 
 gdrive_config['parent_gdrive'] = parent_dir
+print gdrive_config
+
 with open(config_path,'w') as config_f:
     json.dump(gdrive_config,config_f)
 
