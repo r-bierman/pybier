@@ -15,7 +15,7 @@ parser.add_argument('--parent-dir',required=True,dest='parent_dir',help='gdrive 
 args = parser.parse_args()
 parent_dir = args.parent_dir
 
-config_path = resource_filename(__name__,os.path.join('data','gdrive_config.json'))
+config_path = resource_filename('pybier',os.path.join('data','gdrive_config.json'))
 
 gdrive_config = {}
 with open(config_path,'r') as config_f:
