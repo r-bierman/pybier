@@ -17,7 +17,12 @@ local_dir = args.local_dir
 gdrive_loc = args.gdrive_loc
 SLURM = not(args.SLURM == 'False' or args.SLURM == 'F')
 
-get_parent_gdrive() #<-- really want this to work
+#If the gdrive_loc is not given, make a new dir under the main
+gdrive_loc = get_gdrive_loc(gdrive_loc)
+if not gdrive_loc:
+    sys.stderr.write('ERROR: Need to provide --gdrive-loc or configure a parent_gdrive_loc with pydrive_conf --parent-gdrive-loc [loc]\n')
+    sys.exit(1)
+
 
 #Print out out the params for now
 sys.stdout.write('local_dir: '+local_dir+'\n')

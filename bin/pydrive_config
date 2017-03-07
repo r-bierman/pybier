@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+from pybier.gdrive_utils import gdrive_upload,get_parent_gdrive
+from pkg_resources import resource_filename
+from argparse import ArgumentParser
+import json
+import sys
+import os
+
+#######################
+#  Parse Arguments    #
+#######################
+description = 'Setting up gdrive configuration parameters'
+parser = ArgumentParser(description=description)
+parser.add_argument('--parent-dir',required=True,dest='parent_dir',help='gdrive parent directory (e.g. 0B_PjHSg_YHHgNHVmRFU1Wl9rdWs)')
+
+args = parser.parse_args()
+parent_dir = args.parent_dir
+
+config_path = resource_filename(__name__,os.path.join('data','gdrive_config.json'))
+
+gdrive_config = {}
+with open(config_path,'r') as config_f:
+    gdrive_config = json.load(config_f)
+
+gdrive_config['parent_gdrive'] = parent_dir
+with open(config_path,'w') as config_f:
+    json.dump(gdrive_config,config_f)
+
+

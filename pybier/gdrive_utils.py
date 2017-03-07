@@ -9,6 +9,7 @@ from datetime import datetime
 from pkg_resources import resource_filename
 import subprocess
 import json
+import sys
 import os
 import re
 
@@ -43,19 +44,49 @@ def gdrive_upload(local_dir, gdrive_loc, script_path=None, dry=False, SLURM=True
         return handle
 
 
-def get_parent_gdrive():
+def get_gdrive_loc(gdrive_loc=None, stem=None):
+    if gdrive_loc:
+        return gdrive_loc
+
     config_path = resource_filename(__name__,os.path.join('data','gdrive_config.json'))
     gdrive_config = {}
     with open(config_path,'r') as config_f:
         gdrive_config = json.load(config_f)
 
-    print gdrive_config
+    parent_gdrive = gdrive_config['parent_gdrive']
+    if parent_gdrive == 'None':
+        sys.stderr.write('ERROR: No gdrive_loc given and no parent_gdrive set\n')
+        sys.exit(1)
+
+    gdrive_loc = gdrive_mkdir(parent_gdrive,stem=stem)
+    return gdrive_loc
+
+
+def gdrive_mkdir(parent_loc, stem=None):
+    stem = '' if not stem else stem+'_'
+    name = stem+'backup_'+datetime.now().strftime('%Y_%m_%d.%H_%M_%S')
+    cmd = ['gdrive','mkdir','--parent',parent_loc,name]
+    proc = subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    phandle = PopenHandle(proc)
+    out,err = phandle.get_output()
+    gdrive_loc = re.findall(r'Directory (.*?) created',out)
+    if len(gdrive_loc) != 1:
+        sys.stderr.write('ERROR: failed to make gdrive dir\n')
+        sys.exit(1)
+ 
+    return gdrive_loc[0]
+
+
+   
+    
 
 ##########################
 #    Main For Testing    #
 ##########################
 if __name__ == '__main__':
-    get_parent_gdrive()
+    #gdrive_mkdir('0B_PjHSg_YHHgVl8tbllncVZsR0U')
+    print get_gdrive_loc()
+
     #sherlock_dir = '/home/rbierman'
     #gdrive_dir = '0B_PjHSg_YHHgSE5oeUtWblBaV1E'
 
