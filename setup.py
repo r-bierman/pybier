@@ -18,7 +18,10 @@ setup(
     packages=['pybier'],
     package_dir={'pybier': 'pybier'},
     package_data={'pybier': ['data/*']},
-    scripts=['bin/pydrive_sync'],
+    scripts=[
+        'bin/pydrive_sync',
+        'bin/pydrive_config',
+        ],
     install_requires=[],
     include_package_data=True,
     zip_safe=False,
